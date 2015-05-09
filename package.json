@@ -1,0 +1,15 @@
+{
+  "name": "LoggingPlatform",
+  "version": "1.0.0",
+  "description": "A platform created specifically to manage loggings",
+  "main": "server.js",
+  "author": "jeff zhang",
+  "dependencies": {
+    "express": "~4.11.1",
+    "mongoose": "~3.8.0",
+    "body-parser": "~1.4.2",
+    "method-override": "~2.0.2",
+    "bower": "~1.3.12",
+    "nodemon": "~1.3.6"
+  }
+}
