@@ -1,5 +1,4 @@
-BenefitMY Logging Platform
-==========================
+# ImageManager
 
 System Requirements:
 
@@ -9,3 +8,4 @@ System Requirements:
 - See config\server.js for assumed server configurations
 - Run the server using "nodemon" from the installed npm package.
 -- E.g. "./node_modules/nodem/bin/nodemon.js"
+
