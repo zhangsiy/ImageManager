@@ -1,4 +1,5 @@
-# ImageManager
+PDT Image Manager
+==========================
 
 System Requirements:
 

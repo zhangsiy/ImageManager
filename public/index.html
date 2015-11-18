@@ -2,20 +2,20 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="bmLogging">
+<html ng-app="imageManager">
 <head>
     <!-- META -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-    <title>BM Logging Test Console</title>
+    <title>PDT Image Manager</title>
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
     <style>
         html                    { overflow-y:scroll; }
         body                    { padding-top:50px; }
-        #log-list              { margin-bottom:30px; }
+        #upload-list              { margin-bottom:30px; }
     </style>
 
     <!-- SPELLS -->
@@ -31,49 +31,43 @@
     <div class="container">
 
         <div class="jumbotron text-center">
-            <h1>BenefitMy Logs <span class="label label-info">{{ bmLogs.length }}</span></h1>
+            <h1>Uploads <span class="label label-info">{{ uploads.length }}</span></h1>
         </div>
 
-        <div id="log-list" class="row">
+        <div id="upload-list" class="row">
             <div class="col-sm-12">
-                <button class="btn btn-primary btn-lg" ng-click="showCreateLogDialog()" style="width:120px;">Add</button> 
-                <button class="btn btn-primary btn-lg" ng-click="refreshAllLogs()" style="width:120px;">Refresh</button> 
+                <button class="btn btn-primary btn-lg" ng-click="showCreateUploadDialog()" style="width:120px;">Add</button> 
+                <button class="btn btn-primary btn-lg" ng-click="refreshAllUploads()" style="width:120px;">Refresh</button> 
             </div>
         </div>
 
-        <!-- ALL LOGS -->
-        <div id="log-list" class="row">
+        <!-- ALL Uploads -->
+        <div id="upload-list" class="row">
             <div class="col-sm-12">
                 <table class="table table-striped table-bordered table-hover" style="table-layout: fixed; word-wrap: break-word;">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Type</th>
-                            <th>Message</th>
-                            <th>Browser</th>
-                            <th>URL</th>
-                            <th>Stack Trace</th>
-                            <th>Custom Data</th>
+                            <th>S3 Link</th>
+                            <th>File Name</th>
+                            <th>File Type</th>
                             <th>Time Stamp</th>
                         </tr>
                     </thead>
-                    <tr ng-repeat="log in bmLogs">
-                        <td>{{log._id}}</td>
-                        <td>{{log.type}}</td>
-                        <td>{{log.message}}</td>
-                        <td>{{log.browser}}</td>
-                        <td>{{log.url}}</td>
-                        <td>{{log.stackTrace}}</td>
-                        <td>{{log.customData}}</td>
-                        <td>{{log.timestamp}}</td>
+                    <tr ng-repeat="upload in uploads">
+                        <td>{{upload._id}}</td>
+                        <td>{{upload.s3}}</td>
+                        <td>{{upload.file_name}}</td>
+                        <td>{{upload.file_type}}</td>
+                        <td>{{upload.timestamp}}</td>
                     </tr>
                 </table>   
             </div>
         </div>
 
-        <div id="log-list" class="row">
+        <div id="upload-list" class="row">
             <div class="col-sm-12">
-                <button class="btn btn-primary btn-lg" ng-click="clearAllLogs()">Clear All!</button> 
+                <button class="btn btn-primary btn-lg" ng-click="clearAllUploads()">Clear All!</button> 
             </div>
         </div>
 

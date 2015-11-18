@@ -1,7 +1,7 @@
 {
-  "name": "LoggingPlatform",
+  "name": "ImageManager",
   "version": "1.0.0",
-  "description": "A platform created specifically to manage loggings",
+  "description": "An image reporitory facility created to help prototyping for CBD recolorability",
   "main": "server.js",
   "author": "jeff zhang",
   "dependencies": {

@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h4 class="modal-title">Add a Upload</h4>
+</div>
+<div class="modal-body col-md-12">
+    <form>
+        <div class="form-group">
+            <label>S3 Link</label>
+            <input type="text" class="form-control input-lg" ng-model="newUpload.s3">
+        </div>
+        <div class="form-group">
+            <label>File Name</label>
+            <input type="text" class="form-control input-lg" ng-model="newUpload.file_name">
+        </div>
+        <div class="form-group">
+            <label>File Type</label>
+            <input type="text" class="form-control input-lg" ng-model="newUpload.file_type">
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="button-group">
+        <button class="btn btn-info" ng-click="save(newUpload)" style="width:20%;">Save</button>
+        <button class="btn btn-primary" ng-click="cancel()" style="width:20%;">Cancel</button>
+    </div>
+</div>

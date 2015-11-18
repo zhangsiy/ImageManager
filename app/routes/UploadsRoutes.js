@@ -1,58 +1,58 @@
-var BmLog = require('../models/bm_log');
+var Upload= require('../models/upload');
 
 module.exports = function(app) {
 
-	app.get('/api/bm_log', function(req, res) {
+	app.get('/api/uploads', function(req, res) {
 
-		BmLog
+		Upload
         .find()
         .sort('-timestamp')
-        .exec(function(err, bm_logs) {
+        .exec(function(err, uploads) {
             if (err) {
                 res.send(err);
             }
 
-            res.json(bm_logs);
+            res.json(uploads);
         });
 
 	});
 
-	app.post('/api/bm_log', function(req, res) {
+	app.post('/api/uploads', function(req, res) {
 
-		BmLog.create(req.body, function(err, bm_log) {
+		Upload.create(req.body, function(err, upload) {
 			if (err) {
 				res.send(err);
 			}
 
-			BmLog
+			Upload
             .find()
             .sort('-timestamp')
-            .exec(function(err, bm_logs) {
+            .exec(function(err, uploads) {
                 if (err) {
                     res.send(err);
                 }
 
-                res.json(bm_logs);
+                res.json(uploads);
             });
     	});
 
 	});
 
-    app.delete('/api/bm_log/clear_all', function(req, res) {
-        BmLog.remove({}, function(err, bm_log) {
+    app.delete('/api/uploads/clear_all', function(req, res) {
+        Upload.remove({}, function(err, upload) {
             if (err) {
                 res.send(err);
             }
 
-            BmLog
+            Upload
             .find()
             .sort('-timestamp')
-            .exec(function(err, bm_logs) {
+            .exec(function(err, uploads) {
                 if (err) {
                     res.send(err);
                 }
 
-                res.json(bm_logs);
+                res.json(uploads);
             });
         })
     });

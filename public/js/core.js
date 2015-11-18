@@ -1,14 +1,14 @@
 // public/core.js
-var bmLogging = angular.module('bmLogging', ['ui.bootstrap']);
+var imageManager = angular.module('imageManager', ['ui.bootstrap']);
 
-bmLogging.controller('mainController',
+imageManager.controller('mainController',
   ['$scope', '$http', '$modal',
   function mainController($scope, $http, $modal) {
 
-        var getAllLogs = function() {
-            $http.get('/api/bm_log')
+        var getAllUploads = function() {
+            $http.get('/api/uploads')
             .success(function(data) {
-                $scope.bmLogs = data;
+                $scope.uploads = data;
                 console.log(data);
             })
             .error(function(data) {
@@ -17,25 +17,25 @@ bmLogging.controller('mainController',
         };
 
         // when landing on the page, get all current logs and show them
-        getAllLogs();
+        getAllUploads();
 
-        $scope.showCreateLogDialog = function() {
+        $scope.showCreateUploadDialog = function() {
             var modalInstance = $modal.open({
-                templateUrl: '/partials/modal_add_log.html',
-                controller: 'modalAddLogController',
+                templateUrl: '/partials/modal_add_upload.html',
+                controller: 'modalAddUploadController',
                 size: 'lg',
                 backdrop: 'static',
             });
 
-            modalInstance.result.then(function(bmLogs){
-                $scope.bmLogs = bmLogs;
+            modalInstance.result.then(function(uploads){
+                $scope.uploads = uploads;
             });
         };
 
-        $scope.clearAllLogs = function() {
-            $http.delete('/api/bm_log/clear_all')
+        $scope.clearAllUploads = function() {
+            $http.delete('/api/uploads/clear_all')
                 .success(function(data) {
-                    $scope.bmLogs = data;
+                    $scope.uploads = data;
                     console.log(data);
                 })
                 .error(function(data) {
@@ -43,19 +43,19 @@ bmLogging.controller('mainController',
                 });
         };
 
-        $scope.refreshAllLogs = function() {
-            getAllLogs();
+        $scope.refreshAllUploads = function() {
+            getAllUploads();
         };
     }]);
 
-bmLogging.controller('modalAddLogController',
+imageManager.controller('modalAddUploadController',
   ['$scope', '$http', '$modalInstance',
-    function modalAddLogController($scope, $http, $modalInstance) {
+    function modalAddUploadController($scope, $http, $modalInstance) {
         $scope.cancel = function() {
             $modalInstance.dismiss();
         };
-        $scope.save = function(logToSave) {
-            $http.post('/api/bm_log', logToSave)
+        $scope.save = function(uploadToSave) {
+            $http.post('/api/uploads', uploadToSave)
                 .success(function(data) {
                     $modalInstance.close(data);
                 })

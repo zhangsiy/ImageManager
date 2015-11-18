@@ -65,7 +65,7 @@ routesFiles.forEach(function (file) {
 app.listen(port);               
 
 // shoutout to the user                     
-console.log('BenefitMy Logging System is listening on port ' + port);
+console.log('ImageManager is listening on port ' + port);
 
 // expose app           
 exports = module.exports = app;  
