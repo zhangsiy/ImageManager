@@ -1,5 +1,10 @@
 // public/core.js
-var imageManager = angular.module('imageManager', ['ui.bootstrap']);
+var imageManager = angular.module('imageManager', [
+    'ngResource',
+    'ui.router',
+    'ui.bootstrap',
+    'angularFileUpload'
+]);
 
 imageManager.controller('mainController',
   ['$scope', '$http', '$modal',

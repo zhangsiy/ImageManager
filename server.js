@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
 app.use(express.static(__dirname + '/public')); 
 
 // expose the bower components for easy references
-app.use(express.static(__dirname + '/bower_components')); 
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // models ==================================================
 // var modelsPath = __dirname + '/app/models';
