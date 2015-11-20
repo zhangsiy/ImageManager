@@ -38,8 +38,8 @@ module.exports = function(app) {
 
 	});
 
-    app.delete('/api/uploads/clear_all', function(req, res) {
-        Upload.remove({}, function(err, upload) {
+    app.delete('/api/uploads/:id', function(req, res) {
+        Upload.remove({ _id: req.params.id}, function(err, upload) {
             if (err) {
                 res.send(err);
             }

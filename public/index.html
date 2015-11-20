@@ -12,6 +12,7 @@
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <style>
         html                    { overflow-y:scroll; }
         body                    { padding-top:50px; }
@@ -33,6 +34,8 @@
     <script type="text/javascript" src="bower_components/ng-file-upload/angular-file-upload.js"></script>
     <!-- load angular -->
     <script src="js/core.js"></script>
+    <script src="js/factories/domain_factories.js"></script>
+    <script src="js/services/upload_service.js"></script>
 
 </head>
 
@@ -61,6 +64,7 @@
                             <th>File Name</th>
                             <th>File Type</th>
                             <th>Time Stamp</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tr ng-repeat="upload in uploads">
@@ -69,14 +73,9 @@
                         <td>{{upload.file_name}}</td>
                         <td>{{upload.file_type}}</td>
                         <td>{{upload.timestamp}}</td>
+                        <td><div class="fa fa-trash-o" ng-click="deleteUpload(upload._id)"></div></td>
                     </tr>
                 </table>   
-            </div>
-        </div>
-
-        <div id="upload-list" class="row">
-            <div class="col-sm-12">
-                <button class="btn btn-primary btn-lg" ng-click="clearAllUploads()">Clear All!</button> 
             </div>
         </div>
 
