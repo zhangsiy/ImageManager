@@ -18,24 +18,13 @@ module.exports = function(app) {
 	});
 
 	app.post('/api/uploads', function(req, res) {
-
 		Upload.create(req.body, function(err, upload) {
 			if (err) {
 				res.send(err);
 			}
 
-			Upload
-            .find()
-            .sort('-timestamp')
-            .exec(function(err, uploads) {
-                if (err) {
-                    res.send(err);
-                }
-
-                res.json(uploads);
-            });
+            res.json({ message: 'Successfully created' });
     	});
-
 	});
 
     app.delete('/api/uploads/:id', function(req, res) {
@@ -44,16 +33,7 @@ module.exports = function(app) {
                 res.send(err);
             }
 
-            Upload
-            .find()
-            .sort('-timestamp')
-            .exec(function(err, uploads) {
-                if (err) {
-                    res.send(err);
-                }
-
-                res.json(uploads);
-            });
+            res.json({ message: 'Successfully deleted' });
         })
     });
 };

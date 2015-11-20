@@ -4,22 +4,24 @@ var imageManager = angular.module('imageManager', [
     'ui.router',
     'ui.bootstrap',
     'angularFileUpload',
-    'domainFactories'
+    'domainFactories',
+    'imServices'
 ]);
 
 imageManager.controller('mainController',
-  ['$scope', '$http', '$modal',
-  function mainController($scope, $http, $modal) {
+  ['$scope', '$http', '$modal', 'UploadService',
+  function mainController($scope, $http, $modal, UploadService) {
 
         var getAllUploads = function() {
-            $http.get('/api/uploads')
-            .success(function(data) {
-                $scope.uploads = data;
-                console.log(data);
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
+            UploadService.getAllUploadRecords().then(
+                function(data) {
+                    $scope.uploads = data;
+                    console.log(data);
+                },
+                function(data) {
+                    console.log('Error: ' + data);
+                }
+            );
         };
 
         // when landing on the page, get all current logs and show them
@@ -47,19 +49,20 @@ imageManager.controller('mainController',
             });
 
             modalInstance.result.then(function(uploads){
-                $scope.uploads = uploads;
+                getAllUploads();
             });
         };
 
         $scope.deleteUpload = function(id) {
-            $http.delete('/api/uploads/' + id)
-                .success(function(data) {
-                    $scope.uploads = data;
+            UploadService.deleteUploadRecord(id).then(
+                function(data) {
+                    getAllUploads();
                     console.log(data);
-                })
-                .error(function(data) {
+                },
+                function(data) {
                     console.log('Error: ' + data);
-                });
+                }
+            );
         };
 
         $scope.refreshAllUploads = function() {
@@ -68,19 +71,20 @@ imageManager.controller('mainController',
     }]);
 
 imageManager.controller('modalAddUploadController',
-  ['$scope', '$http', '$modalInstance',
-    function modalAddUploadController($scope, $http, $modalInstance) {
+  ['$scope', '$http', '$modalInstance', 'UploadService',
+    function modalAddUploadController($scope, $http, $modalInstance, UploadService) {
         $scope.cancel = function() {
             $modalInstance.dismiss();
         };
         $scope.save = function(uploadToSave) {
-            $http.post('/api/uploads', uploadToSave)
-                .success(function(data) {
+            UploadService.createUploadRecord(uploadToSave).then(
+                function(data) {
                     $modalInstance.close(data);
-                })
-                .error(function(data) {
+                },
+                function(data) {
                     console.log('Error: ' + data);
-                });
+                }
+            );
         };
     }]);
 
