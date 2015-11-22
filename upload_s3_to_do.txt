@@ -1,0 +1,6 @@
+- Create IAM account for application to access S3 only
+- Store secret key in environment variable
+- node to access environment variable to read in the key
+- embed the S3 policy in application settings
+- have route/web API to return information needed for upload
+- Client to set up ng-upload-file to use the upload information to perform upload
